@@ -1,10 +1,32 @@
+import axios from "axios";
 import { useState } from "react";
 
-const AddNewContact = ({ addContacts }) => {
+const AddNewContact = ({ setContacts }) => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
   });
+
+  const postContactHandler = (contact) => {
+    axios
+      .post("http://localhost:5001/contacts", {
+        ...contact,
+        id: Date.now(),
+      })
+      .then((response) => {
+        axios
+          .get("http://localhost:5001/contacts")
+          .then((res) => {
+            setContacts(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const changeHandler = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
@@ -12,8 +34,13 @@ const AddNewContact = ({ addContacts }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(contact);
-    addContacts(contact);
+    if (!contact.name || !contact.email) return alert("enter your data!");
+    postContactHandler(contact);
+    e.target.reset();
+    setContact({
+      name: "",
+      emai: "",
+    });
   };
   return (
     <div>
