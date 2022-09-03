@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "./addNewContact.css";
 
 const AddNewContact = ({ setContacts }) => {
   const [contact, setContact] = useState({
@@ -34,7 +35,8 @@ const AddNewContact = ({ setContacts }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!contact.name || !contact.email) return alert("enter your data!");
+    if (!contact.name || !contact.email)
+      return alert("eall filles are mandatory!");
     postContactHandler(contact);
     e.target.reset();
     setContact({
@@ -45,11 +47,25 @@ const AddNewContact = ({ setContacts }) => {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <label>name</label>
-        <input type="text" name="name" onChange={changeHandler}></input>
-        <label>email</label>
-        <input type="email" name="email" onChange={changeHandler}></input>
-        <button>add</button>
+        <div className="formControl">
+          <label>name</label>
+          <input
+            type="text"
+            name="name"
+            value={contact.name}
+            onChange={changeHandler}
+          ></input>
+        </div>
+        <div className="formControl">
+          <label>email</label>
+          <input
+            type="email"
+            name="email"
+            value={contact.email}
+            onChange={changeHandler}
+          ></input>
+        </div>
+        <button type="submit">Add Contact</button>
       </form>
     </div>
   );

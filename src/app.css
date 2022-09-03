@@ -1,0 +1,14 @@
+.App{
+    background-color: #f8fafc;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+header{
+    background-color: #faf5ff;
+    border-bottom: 1px solid #cbd5e1;
+    padding: 15px 0px;
+}
+header h1{
+color: #64748b;
+}

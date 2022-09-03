@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AddNewContact from "./AddNewContact";
-import ContactsList from "./ContactsList";
+import AddNewContact from "./AddNewContact/AddNewContact";
+import ContactsList from "./ContactList/ContactsList";
 import Header from "./Header";
 
 const ContactApp = () => {

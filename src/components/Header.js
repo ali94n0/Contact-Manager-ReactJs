@@ -1,5 +1,9 @@
 const Header = () => {
-  return <header>contact manager</header>;
+  return (
+    <header>
+      <h1>contact manager</h1>
+    </header>
+  );
 };
 
 export default Header;
