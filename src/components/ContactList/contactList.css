@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.contactList {
     color: #475569;
+    padding-top: 15px;
 }
 .item{
     display: flex;

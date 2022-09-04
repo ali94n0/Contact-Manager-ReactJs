@@ -1,32 +1,24 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./addNewContact.css";
 
-const AddNewContact = ({ setContacts }) => {
+const AddNewContact = () => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
   });
-
-  const postContactHandler = (contact) => {
-    axios
-      .post("http://localhost:5001/contacts", {
+  const navigate = useNavigate();
+  const postContactHandler = async (contact) => {
+    try {
+      await axios.post("http://localhost:5001/contacts", {
         ...contact,
         id: Date.now(),
-      })
-      .then((response) => {
-        axios
-          .get("http://localhost:5001/contacts")
-          .then((res) => {
-            setContacts(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      navigate("/");
+    } catch (error) {
+      alert("server side error");
+    }
   };
 
   const changeHandler = (e) => {
@@ -36,7 +28,7 @@ const AddNewContact = ({ setContacts }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!contact.name || !contact.email)
-      return alert("eall filles are mandatory!");
+      return alert("all filles are mandatory!");
     postContactHandler(contact);
     e.target.reset();
     setContact({
@@ -52,7 +44,7 @@ const AddNewContact = ({ setContacts }) => {
           <input
             type="text"
             name="name"
-            value={contact.name}
+            defaultValue={contact.name}
             onChange={changeHandler}
           ></input>
         </div>
@@ -61,7 +53,7 @@ const AddNewContact = ({ setContacts }) => {
           <input
             type="email"
             name="email"
-            value={contact.email}
+            defaultValue={contact.email}
             onChange={changeHandler}
           ></input>
         </div>

@@ -4,7 +4,7 @@ import userImage from "../../assets/images/user.png";
 const ContactsList = ({ contacts, onDelete }) => {
   return (
     <section className="contactList">
-      <div>contacts list</div>
+      <h3>contacts list</h3>
       {contacts.map((contact) => {
         const { name, email, id } = contact;
         return (

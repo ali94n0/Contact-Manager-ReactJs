@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import AddNewContact from "./AddNewContact/AddNewContact";
 import ContactsList from "./ContactList/ContactsList";
-import Header from "./Header";
 
 const ContactApp = () => {
   const [contacts, setContacts] = useState([]);
@@ -16,7 +16,7 @@ const ContactApp = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [<ContactsList />]);
 
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
@@ -53,11 +53,16 @@ const ContactApp = () => {
     setContacts(filteredContacts);
   };
   return (
-    <div>
-      <Header />
+    <Routes>
+      <Route path="/add" element={<AddNewContact />} />
+      <Route
+        path="/"
+        element={<ContactsList contacts={contacts} onDelete={deleteContact} />}
+      />
+      {/* <Header />
       <AddNewContact setContacts={setContacts} />
-      <ContactsList contacts={contacts} onDelete={deleteContact} />
-    </div>
+      <ContactsList contacts={contacts} onDelete={deleteContact} /> */}
+    </Routes>
   );
 };
 

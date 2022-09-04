@@ -5,10 +5,20 @@
     text-align: center;
 }
 header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #faf5ff;
     border-bottom: 1px solid #cbd5e1;
-    padding: 15px 0px;
+    padding: 15px 60px;
+    
 }
 header h1{
 color: #64748b;
+}
+header a{
+    font-size: 25px;
+    margin-top: 7px;
+    color: #a855f7;
+    
 }
