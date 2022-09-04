@@ -18,6 +18,16 @@ const ContactApp = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    if (savedContacts) {
+      setContacts(savedContacts);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
   //   const addContacts = (formValues) => {
   //     setContacts([...contacts, { ...formValues, id: Date.now() }]);
   //     console.log(contacts);
