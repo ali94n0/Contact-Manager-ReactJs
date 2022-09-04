@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AddNewContact from "./AddNewContact/AddNewContact";
+import ContactDetail from "./ContactDetail/ContactDetail";
 import ContactsList from "./ContactList/ContactsList";
 
 const ContactApp = () => {
@@ -54,11 +55,13 @@ const ContactApp = () => {
   };
   return (
     <Routes>
+      <Route path="/user/:id" element={<ContactDetail />} />
       <Route path="/add" element={<AddNewContact />} />
       <Route
         path="/"
         element={<ContactsList contacts={contacts} onDelete={deleteContact} />}
       />
+
       {/* <Header />
       <AddNewContact setContacts={setContacts} />
       <ContactsList contacts={contacts} onDelete={deleteContact} /> */}
