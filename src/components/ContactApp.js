@@ -1,71 +1,40 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import AddNewContact from "./AddNewContact/AddNewContact";
-import ContactDetail from "./ContactDetail/ContactDetail";
+import { useNavigate } from "react-router-dom";
+import deleteContact from "../services/deleteContactService";
+import getAllContacts from "../services/getAllContactsService";
+
 import ContactsList from "./ContactList/ContactsList";
 
 const ContactApp = () => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5001/contacts")
-      .then((response) => {
-        setContacts(response.data);
-      })
-      .catch((error) => {
+    const getContacts = async () => {
+      try {
+        const { data } = await getAllContacts();
+        setContacts(data);
+      } catch (error) {
         console.log(error);
-      });
-  }, [<ContactsList />]);
-
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-    if (savedContacts) {
-      setContacts(savedContacts);
-    }
+      }
+    };
+    getContacts();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-  //   const addContacts = (formValues) => {
-  //     setContacts([...contacts, { ...formValues, id: Date.now() }]);
-  //     console.log(contacts);
-  //   };
-
-  const deleteContact = (id) => {
-    axios
-      .delete(`http://localhost:5001/contacts/${id}`)
-      .then((res) => {
-        axios
-          .get("http://localhost:5001/contacts")
-          .then((response) => {
-            setContacts(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    const filteredContacts = contacts.filter((c) => c.id !== id);
-    setContacts(filteredContacts);
+  const navigate = useNavigate();
+  const deletedContact = async (id) => {
+    try {
+      const { data } = await deleteContact(id);
+      setContacts(data);
+      const filteredContacts = contacts.filter((c) => c.id !== id);
+      setContacts(filteredContacts);
+      navigate("/");
+    } catch (error) {
+      alert(`${error.message}`);
+    }
   };
   return (
-    <Routes>
-      <Route path="/user/:id" element={<ContactDetail />} />
-      <Route path="/add" element={<AddNewContact />} />
-      <Route
-        path="/"
-        element={<ContactsList contacts={contacts} onDelete={deleteContact} />}
-      />
-
-      {/* <Header />
-      <AddNewContact setContacts={setContacts} />
-      <ContactsList contacts={contacts} onDelete={deleteContact} /> */}
-    </Routes>
+    <>
+      <ContactsList contacts={contacts} onDelete={deletedContact} />
+    </>
   );
 };
 

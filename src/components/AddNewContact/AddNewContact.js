@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import postNewContact from "../../services/postNewContactService";
 import "./addNewContact.css";
 
 const AddNewContact = () => {
@@ -11,9 +11,8 @@ const AddNewContact = () => {
   const navigate = useNavigate();
   const postContactHandler = async (contact) => {
     try {
-      await axios.post("http://localhost:5001/contacts", {
+      await postNewContact({
         ...contact,
-        id: Date.now(),
       });
       navigate("/");
     } catch (error) {

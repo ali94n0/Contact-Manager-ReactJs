@@ -1,5 +1,5 @@
 import userImage from "../../../assets/images/user.png";
-import { BiTrash } from "react-icons/bi";
+import { BiTrash, BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 const Contact = ({ contact, onDelete }) => {
   const { name, email, id } = contact;
@@ -14,10 +14,14 @@ const Contact = ({ contact, onDelete }) => {
           </div>
         </div>
       </Link>
-
-      <button onClick={() => onDelete(id)}>
-        <BiTrash />
-      </button>
+      <div>
+        <Link className="edit" to={`edit/${id}`}>
+          <BiEdit />
+        </Link>
+        <button onClick={() => onDelete(id)}>
+          <BiTrash />
+        </button>
+      </div>
     </div>
   );
 };
