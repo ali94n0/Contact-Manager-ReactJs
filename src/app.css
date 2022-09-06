@@ -15,10 +15,21 @@ header{
 }
 header h1{
 color: #64748b;
+font-size: 27px;
 }
 header a{
-    font-size: 28px;
-    margin-left: 15px;
+    font-size:30px;
+    margin-left: 25px;
     color: #a855f7;
     
+}
+header input{
+    padding: 7px 15px;
+    border: 1px solid #d8b4fe;
+    border-radius: 7px;
+    width: 18rem;
+    color: #475569;
+}
+header input:focus{
+    border: 2px solid #a855f7;
 }

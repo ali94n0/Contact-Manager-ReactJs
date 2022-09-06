@@ -4,6 +4,12 @@
     align-items: center;
     color: #475569;
     padding-top: 15px;
+    
+}
+.contactList h3{
+    font-size: 18px;
+    margin-bottom: 7px;
+
 }
 .item{
     display: flex;
