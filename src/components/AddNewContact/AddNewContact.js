@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import postNewContact from "../../services/postNewContactService";
 import "./addNewContact.css";
 
@@ -57,6 +57,9 @@ const AddNewContact = () => {
           ></input>
         </div>
         <button type="submit">Add Contact</button>
+        <Link class="backHome" to={"/"}>
+          Back
+        </Link>
       </form>
     </div>
   );

@@ -1,13 +1,30 @@
+.listWraper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
 .contactList{
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #475569;
-    padding-top: 15px;
+    max-width: 25rem;
+    background-color: #312e81;
+    border-radius: 11px;
+    overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+    height:100vh;
     
 }
+.acontactList::-webkit-scrollbar {
+    display: none;
+    -webkit-overflow-scrolling: touch;
+  }
 .contactList h3{
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 7px;
 
 }
@@ -18,8 +35,11 @@
     padding: 7px;
     border: 1px solid #cbd5e1;
     border-radius: 7px;
-    margin-top: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
     width: 20rem;
+    background-color: #fcfbf8;
+    scroll-snap-align: start;
 }
 .item a{
     text-decoration: none;
@@ -63,4 +83,34 @@
 .firstContact a{
     text-decoration: none;
     font-weight: bold;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25rem;
+    background-color: #faf5ff;
+    padding: 7px;
+    border-radius: 10px 10px 0px 0px;
+    border: 2px solid #312e81;
+    position: sticky;
+    top: 0;
+    
+}
+.nav .icon a{
+    font-size:24px;
+    margin-left: 10px;
+    color: #a855f7;
+    
+}
+.search input{
+    padding: 7px 15px;
+    border: 1px solid #d8b4fe;
+    border-radius: 7px;
+    width: 12rem;
+    color: #475569;
+    margin: 0px 10px;
+}
+.search input:focus{
+    border: 2px solid #a855f7;
 }
